@@ -1,0 +1,17 @@
+## For Encding Image in Binary Type
+filename = filedialog.askopenfilename(
+        filetypes=f_types)
+filename = filename.replace("\\", "/")
+img = Image.open(filename)
+r_img = img.resize((200, 200))
+img = ImageTk.PhotoImage(r_img)
+image_area['image'] = img
+file = open(filename, 'rb').read()
+file = base64.b64encode(file)
+
+## For Decoding Binary into  Type
+# For Showing Image
+binary_data = base64.b64decode(v[7])
+img = Image.open((io.BytesIO(binary_data)))
+r_img = img.resize((200, 200))
+image3 = ImageTk.PhotoImage(r_img)
