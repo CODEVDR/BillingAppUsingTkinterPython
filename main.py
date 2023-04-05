@@ -73,10 +73,10 @@ frame_fields = Frame(mFrame, bg=bcg)
 # Variables
 name = StringVar()
 fname = StringVar()
+regNo = IntVar()
 adhrno = IntVar()
 addr = StringVar()
 mobno = IntVar()
-bldgrp = StringVar()
 dob = StringVar()
 # Entries and Labels
 Label(frame_fields, text="Name",
@@ -91,6 +91,11 @@ Entry(frame_fields, textvariable=fname,
 
 Label(frame_fields, text="Registration Number",
       relief=SOLID, font="Corbel 10 bold underline", fg="black").pack(anchor=W)
+Entry(frame_fields, textvariable=regNo,
+      relief=SOLID, font="Corbel 13 bold", width=50).pack()
+
+Label(frame_fields, text="Aadhaar Number",
+      relief=SOLID, font="Corbel 10 bold underline", fg="black").pack(anchor=W)
 Entry(frame_fields, textvariable=adhrno,
       relief=SOLID, font="Corbel 13 bold", width=50).pack()
 
@@ -104,11 +109,6 @@ Label(frame_fields, text="Mobile Number",
 Entry(frame_fields, textvariable=mobno,
       relief=SOLID, font="Corbel 13 bold", width=50).pack()
 
-Label(frame_fields, text="Blood Group",
-      relief=SOLID, font="Corbel 10 bold underline", fg="black").pack(anchor=W)
-Entry(frame_fields, textvariable=bldgrp,
-      relief=SOLID, font="Corbel 13 bold", width=50).pack()
-
 Label(frame_fields, text="DOB", relief=SOLID, font="Corbel 10 bold underline",
       fg="black").pack(anchor=W)
 Entry(frame_fields, textvariable=dob, relief=SOLID,
@@ -118,14 +118,15 @@ Entry(frame_fields, textvariable=dob, relief=SOLID,
 
 def sub():
     try:
-        if name.get() == "" or fname.get() == "" or adhrno.get() == "" or addr.get() == "" or mobno.get() == "" or bldgrp.get() == "" or dob.get() == "" or file == "":
+        if name.get() == "" or fname.get() == "" or regNo.get() == "" or adhrno.get() == "" or addr.get() == "" or mobno.get() == ""  or dob.get() == "" or file == "":
+            print(name.get(),fname.get(),regNo.get(),adhrno.get(),addr.get(),mobno.get(),dob.get(),file)
             msg.showerror("Error | SCA ", "Fields Cant Be Empty")
         else:
             v = msg.askquestion("Submit | SCA",
                                 "Do You Want To Submit ?")
             if v == "yes":
-                an = submit(hs, us, pw, name.get(), fname.get(), adhrno.get(
-                ), addr.get(), mobno.get(), bldgrp.get(), dob.get(), file[0])
+                an = submit(hs, us, pw, name.get(), fname.get(),regNo.get(),adhrno.get(
+                ), addr.get(), mobno.get(), dob.get(), file[0])
                 if an != 0:
                     msg.showinfo("Sucess | SCA ", "Stored Sucessfully")
                 else:
@@ -148,13 +149,13 @@ bk.pack(anchor=W)
 
 
 def see():
-    if name1.get() != "" or adhrno1.get() != "":
-        def v():
+    if name12.get() != "" or regno1.get() != "":
+        def showData():
             try:
-                cd_con = sqlctr.connect(
+                cd_Con = sqlctr.connect(
                     host=hs, user=us, password=pw, database="user_data")
-                cd = cd_con.cursor()
-                q1 = f"select * from data where name='{name1.get()}' && aadno={adhrno1.get()};"
+                cd = cd_Con.cursor()
+                q1 = f"""select * from data where name="{name12.get()}" and regno={regno12.get()};"""
                 cd.execute(q1)
                 res = cd.fetchall()
                 if res == []:
@@ -163,11 +164,11 @@ def see():
                     return res[0][0], res[0][1], res[0][2], res[0][3], res[0][4], res[0][5], res[0][6], res[0][7]
             except:
                 return 2, None
-        v = v()
-        if v[0] == 0:
+        v1 = showData()
+        if v1[0] == 0:
             msg.showerror("Error | SCA ",
                           "No Such Data is Present in Database")
-        elif v[0] == 2:
+        elif v1[0] == 2:
             msg.showwarning("Warning | SCA ",
                             "Please Create Table First")
         else:
@@ -175,8 +176,8 @@ def see():
                 global image3, image_area, bk_to_see
 
                 bk.pack_forget(), gdata_frame.pack_forget()
-                name3, fname3, adhrn3, addr3, mobno3, bldgrp3, dob3 = v[
-                    0], v[1], v[2], v[3], v[4], v[5], v[6]
+                name3, fname3,regno3,adhrn3, addr3, mobno3, dob3 = v1[
+                    0], v1[1], v1[2], v1[3], v1[4], v1[5], v1[6]
 
                 bsFrame = Frame(mFrame1, bg=bcg)
 
@@ -192,7 +193,7 @@ def see():
                 Label(bsFrame, text="Shyam Computer Academy", relief=SOLID, borderwidth=3,
                       font="impact 25 bold underline", fg="black").pack(pady=50)
                 # For Showing Image
-                binary_data = base64.b64decode(v[7])
+                binary_data = base64.b64decode(v1[7])
                 img = Image.open((io.BytesIO(binary_data)))
                 r_img = img.resize((200, 200))
                 image3 = ImageTk.PhotoImage(r_img)
@@ -204,13 +205,13 @@ def see():
                       font="Corbel 15 bold underline", width=50, fg="black").pack(pady=5)
                 Label(bsFrame, text=f"Father's Name : {fname3}", relief=SOLID,
                       font="Corbel 15 bold underline", width=50, fg="black").pack(pady=5)
-                Label(bsFrame, text=f"Registration Number : {adhrn3}",
+                Label(bsFrame, text=f"Registration Number : {regno3}",
+                      relief=SOLID, font="Corbel 15 bold underline", width=50, fg="black").pack(pady=5)
+                Label(bsFrame, text=f"Aadhaar Number : {adhrn3}",
                       relief=SOLID, font="Corbel 15 bold underline", width=50, fg="black").pack(pady=5)
                 Label(bsFrame, text=f"Address : {addr3}", relief=SOLID,
                       font="Corbel 15 bold underline", width=50, fg="black").pack(pady=5)
                 Label(bsFrame, text=f"Mobile Number : {mobno3}", relief=SOLID,
-                      font="Corbel 15 bold underline", width=50, fg="black").pack(pady=5)
-                Label(bsFrame, text=f"Blood Group : {bldgrp3}", relief=SOLID,
                       font="Corbel 15 bold underline", width=50, fg="black").pack(pady=5)
                 Label(bsFrame, text=f"DOB : {dob3}", relief=SOLID,
                       font="Corbel 15 bold underline", width=50, fg="black").pack(pady=5)
@@ -223,18 +224,18 @@ def see():
 
 
 gdata_frame = Frame(mFrame1, bg=bcg)
-name1 = StringVar()
-adhrno1 = StringVar()
+name12 = StringVar()
+regno12 = StringVar()
 Label(gdata_frame, text="Shyam Computer Academy", relief=SOLID, borderwidth=3,
       font="impact 25 bold underline", fg="black").pack(pady=100)
 Label(gdata_frame, text="Enter Name", relief=SOLID, font="Corbel 15 bold underline",
       fg="black").pack(anchor=W)
-Entry(gdata_frame, textvariable=name1, relief=SOLID,
+Entry(gdata_frame, textvariable=name12, relief=SOLID,
       font="Corbel 20 bold", width=50).pack()
 gdata_frame.pack()
 Label(gdata_frame, text="Enter Registration Number", relief=SOLID, font="Corbel 15 bold underline",
       fg="black").pack(anchor=W)
-Entry(gdata_frame, textvariable=adhrno1, relief=SOLID,
+Entry(gdata_frame, textvariable=regno12, relief=SOLID,
       font="Corbel 20 bold", width=50).pack()
 Button(gdata_frame, text="Submit", relief=SOLID, font="Corbel 12 bold", command=see, fg="black",
        activebackground="grey", activeforeground="black", width=40).pack(pady=10)
@@ -330,7 +331,7 @@ def storeFeeServ():
         cd.commit()
     else:
         try:
-            q2 = f"""select * from data where aadno={regno.get()};"""
+            q2 = f"""select * from data where regno={regno.get()};"""
             cur.execute(q2)
         except:
             msg.showerror("Error", "Please Create table First")
@@ -423,7 +424,7 @@ def seeFeeServ():
     cd_con = sqlctr.connect(
         host=hs, user=us, password=pw, database="user_data")
     cd = cd_con.cursor()
-    q1 = f"select * from data where name='{nm.get()}' && aadno={regno1.get()};"
+    q1 = f"select * from data where name='{nm.get()}' && regno={regno1.get()};"
     cd.execute(q1)
     res10 = cd.fetchall()
 
@@ -541,7 +542,7 @@ def seeFeeServ1():
     cd_con = sqlctr.connect(
         host=hs, user=us, password=pw, database="user_data")
     cd = cd_con.cursor()
-    q1 = f"select * from data where name='{nm15.get()}' && aadno={regno115.get()};"
+    q1 = f"select * from data where name='{nm15.get()}' && regno={regno115.get()};"
     cd.execute(q1)
     res101 = cd.fetchall()
     if res101 == []:
@@ -685,7 +686,7 @@ def deleteServ():
         cd_con_ = sqlctr.connect(
             host=hs, user=us, password=pw, database="user_data")
         cd_ = cd_con_.cursor()
-        q1_ = f"select * from data where name='{name_.get()}' && aadno={regno_.get()};"
+        q1_ = f"select * from data where name='{name_.get()}' && regno={regno_.get()};"
         cd_.execute(q1_)
         res = cd_.fetchall()
         if res != []:
@@ -696,7 +697,7 @@ def deleteServ():
                 ask = msg.askquestion("Delete | SCA", "Sure To Delete Data")
             if ask == "yes":
                 cd_.execute(
-                    f"delete from data where name='{name_.get()}' && aadno={regno_.get()};")
+                    f"delete from data where name='{name_.get()}' && regno={regno_.get()};")
                 if var_.get() == 1:
                     try:
                         cd_.execute(
