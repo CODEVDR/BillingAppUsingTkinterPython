@@ -7,7 +7,8 @@ from PIL import Image, ImageTk
 
 # Backend
 
-def submit(h, u, p, name, fname, adhrno, addr, mobno, bldgrp, dob, file):
+
+def submit(h, u, p, name, fname, regno, adhrno, addr, mobno, dob, file):
     try:
         con_server = sqlctr.connect(
             host=f"{h}", user=f"{u}", password=f"{p}")
@@ -16,9 +17,9 @@ def submit(h, u, p, name, fname, adhrno, addr, mobno, bldgrp, dob, file):
         con_database = sqlctr.connect(
             host=f"{h}", user=f"{u}", password=f"{p}", database="user_data")
         cd = con_database.cursor()
-        q1 = "create table if not exists data(name varchar(60),fname varchar(60),aadno bigint primary key,addr varchar(90),mobno bigint,bldgrp varchar(10),dob varchar(50),img longblob);"
-        args = (f"{name}", f"{fname}", f"{adhrno}", f"{addr}",
-                f"{mobno}", f"{bldgrp}", f"{dob}", file)
+        q1 = "create table if not exists data(name varchar(60),fname varchar(60),regno bigint primary key,addno bigint,addr varchar(90),mobno bigint,dob varchar(50),img longblob);"
+        args = (f"{name}", f"{fname}", f"{regno}", f"{adhrno}", f"{addr}",
+                f"{mobno}", f"{dob}", file)
         q2 = """insert into data values(%s,%s,%s,%s,%s,%s,%s,%s);"""
         cd.execute(q1)
         cd.execute(q2, args)
@@ -30,14 +31,13 @@ def submit(h, u, p, name, fname, adhrno, addr, mobno, bldgrp, dob, file):
     return val
 
 
-
 # Upload File
 
 
 def upload_file(image_area):
     global img  # Image upload and display
     f_types = [('Png files', '*.png'),
-               ('Jpg Files', '*.jpg'),("All Files","*.*")]
+               ('Jpg Files', '*.jpg'), ("All Files", "*.*")]
     filename = filedialog.askopenfilename(
         filetypes=f_types)
     if filename != "":
