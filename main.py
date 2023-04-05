@@ -24,11 +24,18 @@ root.iconbitmap("assets/icon.ico")
 root.minsize(600, 850)
 root.geometry(f"{root.winfo_screenwidth()}x{root.winfo_screenheight()}")
 # bg color control
-bcg = "#892CDC"
-root.config(background="#892CDC")
-
-
+bcg = "#7FCDD4"
+root.config(background="#7FCDD4")
+# 892CDC
+# bg image
+img = Image.open("assets/bg.jpg")
+r_img = img.resize((root.winfo_screenwidth(), root.winfo_screenheight()))
+bg = ImageTk.PhotoImage(r_img)
+label17 = Label(root, image=bg)
+label17.place(x=0, y=0)
 # -----------------------CODE STARTS FROM HERE-----------------------
+
+
 def back():
     root.title("USER INFO | SCA")
     tmpFrame()
@@ -53,7 +60,7 @@ def upld_file():
 
 # Setting Image To Button
 Label(frame_img, text="IMAGE", relief=SOLID,
-      font="Corbel 12 bold underline", fg="purple").pack()
+      font="Corbel 12 bold underline", fg="black").pack()
 img = Image.open("assets/up_img.png")
 r_img = img.resize((200, 200))
 image = ImageTk.PhotoImage(r_img)
@@ -73,37 +80,37 @@ bldgrp = StringVar()
 dob = StringVar()
 # Entries and Labels
 Label(frame_fields, text="Name",
-      relief=SOLID, font="Corbel 10 bold underline", fg="purple").pack(anchor=W)
+      relief=SOLID, font="Corbel 10 bold underline", fg="black").pack(anchor=W)
 Entry(frame_fields, textvariable=name,
       relief=SOLID, font="Corbel 13 bold", width=50).pack()
 
 Label(frame_fields, text="Father's Name",
-      relief=SOLID, font="Corbel 10 bold underline", fg="purple").pack(anchor=W)
+      relief=SOLID, font="Corbel 10 bold underline", fg="black").pack(anchor=W)
 Entry(frame_fields, textvariable=fname,
       relief=SOLID, font="Corbel 13 bold", width=50).pack()
 
 Label(frame_fields, text="Registration Number",
-      relief=SOLID, font="Corbel 10 bold underline", fg="purple").pack(anchor=W)
+      relief=SOLID, font="Corbel 10 bold underline", fg="black").pack(anchor=W)
 Entry(frame_fields, textvariable=adhrno,
       relief=SOLID, font="Corbel 13 bold", width=50).pack()
 
 Label(frame_fields, text="Address",
-      relief=SOLID, font="Corbel 10 bold underline", fg="purple").pack(anchor=W)
+      relief=SOLID, font="Corbel 10 bold underline", fg="black").pack(anchor=W)
 Entry(frame_fields, textvariable=addr,
       relief=SOLID, font="Corbel 13 bold", width=50).pack()
 
 Label(frame_fields, text="Mobile Number",
-      relief=SOLID, font="Corbel 10 bold underline", fg="purple").pack(anchor=W)
+      relief=SOLID, font="Corbel 10 bold underline", fg="black").pack(anchor=W)
 Entry(frame_fields, textvariable=mobno,
       relief=SOLID, font="Corbel 13 bold", width=50).pack()
 
 Label(frame_fields, text="Blood Group",
-      relief=SOLID, font="Corbel 10 bold underline", fg="purple").pack(anchor=W)
+      relief=SOLID, font="Corbel 10 bold underline", fg="black").pack(anchor=W)
 Entry(frame_fields, textvariable=bldgrp,
       relief=SOLID, font="Corbel 13 bold", width=50).pack()
 
 Label(frame_fields, text="DOB", relief=SOLID, font="Corbel 10 bold underline",
-      fg="purple").pack(anchor=W)
+      fg="black").pack(anchor=W)
 Entry(frame_fields, textvariable=dob, relief=SOLID,
       font="Corbel 13 bold", width=50).pack()
 # Function For Storing Values
@@ -128,8 +135,8 @@ def sub():
         msg.showerror("Error | SCA", "Please Select an Image.")
 
 
-Button(frame_fields, text="Submit", relief=SOLID, font="Corbel 12 bold", command=sub, fg="purple",
-       activebackground="violet", activeforeground="purple", width=40).pack(pady=10)
+Button(frame_fields, text="Submit", relief=SOLID, font="Corbel 12 bold", command=sub, fg="black",
+       activebackground="grey", activeforeground="black", width=40).pack(pady=10)
 frame_fields.pack(pady=30)
 
 # ===================================CODE FOR SEE DATA OF STUDENT===================================================
@@ -183,7 +190,7 @@ def see():
                     mFrame1, text=u"\u25C0 Back", command=backtoSee)
                 bk_to_see.pack(anchor=W)
                 Label(bsFrame, text="Shyam Computer Academy", relief=SOLID, borderwidth=3,
-                      font="impact 25 bold underline", fg="purple").pack(pady=50)
+                      font="impact 25 bold underline", fg="black").pack(pady=50)
                 # For Showing Image
                 binary_data = base64.b64decode(v[7])
                 img = Image.open((io.BytesIO(binary_data)))
@@ -194,19 +201,19 @@ def see():
                 image_area.pack(pady=50)
                 # ``````````````ENDS``````````````
                 Label(bsFrame, text=f"Name : {name3}", relief=SOLID,
-                      font="Corbel 15 bold underline", width=50, fg="purple").pack(pady=5)
+                      font="Corbel 15 bold underline", width=50, fg="black").pack(pady=5)
                 Label(bsFrame, text=f"Father's Name : {fname3}", relief=SOLID,
-                      font="Corbel 15 bold underline", width=50, fg="purple").pack(pady=5)
+                      font="Corbel 15 bold underline", width=50, fg="black").pack(pady=5)
                 Label(bsFrame, text=f"Registration Number : {adhrn3}",
-                      relief=SOLID, font="Corbel 15 bold underline", width=50, fg="purple").pack(pady=5)
+                      relief=SOLID, font="Corbel 15 bold underline", width=50, fg="black").pack(pady=5)
                 Label(bsFrame, text=f"Address : {addr3}", relief=SOLID,
-                      font="Corbel 15 bold underline", width=50, fg="purple").pack(pady=5)
+                      font="Corbel 15 bold underline", width=50, fg="black").pack(pady=5)
                 Label(bsFrame, text=f"Mobile Number : {mobno3}", relief=SOLID,
-                      font="Corbel 15 bold underline", width=50, fg="purple").pack(pady=5)
+                      font="Corbel 15 bold underline", width=50, fg="black").pack(pady=5)
                 Label(bsFrame, text=f"Blood Group : {bldgrp3}", relief=SOLID,
-                      font="Corbel 15 bold underline", width=50, fg="purple").pack(pady=5)
+                      font="Corbel 15 bold underline", width=50, fg="black").pack(pady=5)
                 Label(bsFrame, text=f"DOB : {dob3}", relief=SOLID,
-                      font="Corbel 15 bold underline", width=50, fg="purple").pack(pady=5)
+                      font="Corbel 15 bold underline", width=50, fg="black").pack(pady=5)
 
                 bsFrame.pack()
             except:
@@ -219,18 +226,18 @@ gdata_frame = Frame(mFrame1, bg=bcg)
 name1 = StringVar()
 adhrno1 = StringVar()
 Label(gdata_frame, text="Shyam Computer Academy", relief=SOLID, borderwidth=3,
-      font="impact 25 bold underline", fg="purple").pack(pady=100)
+      font="impact 25 bold underline", fg="black").pack(pady=100)
 Label(gdata_frame, text="Enter Name", relief=SOLID, font="Corbel 15 bold underline",
-      fg="purple").pack(anchor=W)
+      fg="black").pack(anchor=W)
 Entry(gdata_frame, textvariable=name1, relief=SOLID,
       font="Corbel 20 bold", width=50).pack()
 gdata_frame.pack()
 Label(gdata_frame, text="Enter Registration Number", relief=SOLID, font="Corbel 15 bold underline",
-      fg="purple").pack(anchor=W)
+      fg="black").pack(anchor=W)
 Entry(gdata_frame, textvariable=adhrno1, relief=SOLID,
       font="Corbel 20 bold", width=50).pack()
-Button(gdata_frame, text="Submit", relief=SOLID, font="Corbel 12 bold", command=see, fg="purple",
-       activebackground="violet", activeforeground="purple", width=40).pack(pady=10)
+Button(gdata_frame, text="Submit", relief=SOLID, font="Corbel 12 bold", command=see, fg="black",
+       activebackground="grey", activeforeground="black", width=40).pack(pady=10)
 gdata_frame.pack()
 # ========================================================================================
 # End of Aboove Code
@@ -259,7 +266,7 @@ addFeeStruc = Frame(mFrame2, bg=bcg)
 
 Button(addFeeStruc, text=u"\u25C0 Back", command=localBack).pack(anchor=W)
 Label(addFeeStruc, text="Shyam Computer Academy", relief=SOLID, borderwidth=3,
-      font="impact 25 bold underline", fg="purple").pack(pady=100)
+      font="impact 25 bold underline", fg="black").pack(pady=100)
 # For Adding Fee Stucture
 addFeestruc = Frame(addFeeStruc, bg=bcg)
 # Function That Stores Fee
@@ -287,17 +294,17 @@ def storeFee():
 cName = StringVar()
 cFee = StringVar()
 Label(addFeestruc, text="Course Name", relief=SOLID, borderwidth=3,
-      font="Corbel 15 bold underline", fg="purple").pack(anchor=W)
+      font="Corbel 15 bold underline", fg="black").pack(anchor=W)
 Entry(addFeestruc, textvariable=cName, relief=SOLID,
       font="Corbel 20 bold", width=50).pack()
 
 Label(addFeestruc, text="Course Fee", relief=SOLID, borderwidth=3,
-      font="Corbel 15 bold underline", fg="purple").pack(anchor=W)
+      font="Corbel 15 bold underline", fg="black").pack(anchor=W)
 Entry(addFeestruc, textvariable=cFee, relief=SOLID,
       font="Corbel 20 bold", width=50).pack()
 
-Button(addFeestruc, text="Submit", relief=SOLID, font="Corbel 12 bold", command=storeFee, fg="purple",
-       activebackground="violet", activeforeground="purple", width=40).pack(pady=10)
+Button(addFeestruc, text="Submit", relief=SOLID, font="Corbel 12 bold", command=storeFee, fg="black",
+       activebackground="grey", activeforeground="black", width=40).pack(pady=10)
 
 addFeestruc.pack()
 # --------------------------------------------
@@ -309,7 +316,7 @@ addFeestruc.pack()
 storePayment = Frame(mFrame2, bg=bcg)
 Button(storePayment, text=u"\u25C0 Back", command=localBack).pack(anchor=W)
 Label(storePayment, text="Shyam Computer Academy", relief=SOLID, borderwidth=3,
-      font="impact 25 bold underline", fg="purple").pack(pady=100)
+      font="impact 25 bold underline", fg="black").pack(pady=100)
 
 
 def storeFeeServ():
@@ -370,26 +377,26 @@ regno = StringVar()
 csName = StringVar()
 amtFee = StringVar()
 Label(storePayment, text="Registration Number", relief=SOLID, borderwidth=3,
-      font="Corbel 15 bold underline", fg="purple").pack(anchor=W)
+      font="Corbel 15 bold underline", fg="black").pack(anchor=W)
 Entry(storePayment, textvariable=regno, relief=SOLID,
       font="Corbel 20 bold", width=50).pack()
 
 Label(storePayment, text="Course Name", relief=SOLID, borderwidth=3,
-      font="Corbel 15 bold underline", fg="purple").pack(anchor=W)
+      font="Corbel 15 bold underline", fg="black").pack(anchor=W)
 Entry(storePayment, textvariable=csName, relief=SOLID,
       font="Corbel 20 bold", width=50).pack()
 
 Label(storePayment, text="Amount Paid", relief=SOLID, borderwidth=3,
-      font="Corbel 15 bold underline", fg="purple").pack(anchor=W)
+      font="Corbel 15 bold underline", fg="black").pack(anchor=W)
 Entry(storePayment, textvariable=amtFee, relief=SOLID,
       font="Corbel 20 bold", width=50).pack()
 
 amtrem = Label(storePayment, text="", relief=SOLID, borderwidth=3,
-               font="Corbel 15 bold underline", fg="purple")
+               font="Corbel 15 bold underline", fg="black")
 amtrem.pack(anchor=W)
 
-Button(storePayment, text="Submit", relief=SOLID, font="Corbel 12 bold", command=storeFeeServ, fg="purple",
-       activebackground="violet", activeforeground="purple", width=40).pack(pady=10)
+Button(storePayment, text="Submit", relief=SOLID, font="Corbel 12 bold", command=storeFeeServ, fg="black",
+       activebackground="grey", activeforeground="black", width=40).pack(pady=10)
 # --------------------------------------------
 # End Of Store Payment Code
 
@@ -400,7 +407,7 @@ seePayment = Frame(mFrame2, bg=bcg)
 bksp = Button(seePayment, text=u"\u25C0 Back", command=localBack)
 bksp.pack(anchor=W)
 head = Label(seePayment, text="Shyam Computer Academy", relief=SOLID, borderwidth=3,
-             font="impact 25 bold underline", fg="purple")
+             font="impact 25 bold underline", fg="black")
 head.pack(pady=50)
 
 
@@ -427,12 +434,12 @@ def seeFeeServ():
             btnbk = Button(pmWndw, text=u"\u25C0 Back", command=back2fmTemp)
             btnbk.pack(anchor=W)
             Label(pmWndw, text="Shyam Computer Academy", relief=SOLID, borderwidth=3,
-                  font="impact 25 bold underline", fg="purple").pack(pady=50)
+                  font="impact 25 bold underline", fg="black").pack(pady=50)
             bksp.pack_forget(), fmTemp.pack_forget(), head.pack_forget()
             name4, fname4, adhrn4, addr4, mobno4, bldgrp4, dob4 = res10[0][0], res10[
                 0][1], res10[0][2], res10[0][3], res10[0][4], res10[0][5], res10[0][6]
             Label(pmWndw, text=f"Image", relief=SOLID,
-                  font="Corbel 15 bold underline", fg="purple").pack()
+                  font="Corbel 15 bold underline", fg="black").pack()
             # For Showing Image
             binary_data = base64.b64decode(res10[0][7])
             img = Image.open((io.BytesIO(binary_data)))
@@ -485,8 +492,8 @@ BILL DATE : {result[0][3]}     AMOUNT : {result[-1][2]}
                     win32api.ShellExecute(
                         0, "print", file_to_print, None, ".", 0)
                 os.chdir("..")
-            Button(pmWndw, text="🖨️Print", command=printf, relief=SOLID, font="Corbel 12 bold", fg="purple",
-                   activebackground="violet", activeforeground="purple", width=40).pack(pady=10)
+            Button(pmWndw, text="🖨️Print", command=printf, relief=SOLID, font="Corbel 12 bold", fg="black",
+                   activebackground="grey", activeforeground="black", width=40).pack(pady=10)
         except:
             msg.showerror("Error | SCA", "Please Create Table First")
     pmWndw.pack()
@@ -497,17 +504,17 @@ fmTemp = Frame(seePayment, bg=bcg)
 nm = StringVar()
 regno1 = StringVar()
 Label(fmTemp, text="Name", relief=SOLID, borderwidth=3,
-      font="Corbel 15 bold underline", fg="purple").pack(anchor=W)
+      font="Corbel 15 bold underline", fg="black").pack(anchor=W)
 Entry(fmTemp, textvariable=nm, relief=SOLID,
       font="Corbel 20 bold", width=50).pack()
 
 Label(fmTemp, text="Registration Number", relief=SOLID, borderwidth=3,
-      font="Corbel 15 bold underline", fg="purple").pack(anchor=W)
+      font="Corbel 15 bold underline", fg="black").pack(anchor=W)
 Entry(fmTemp, textvariable=regno1, relief=SOLID,
       font="Corbel 20 bold", width=50).pack()
 
-Button(fmTemp, text="Submit", relief=SOLID, font="Corbel 12 bold", command=seeFeeServ, fg="purple",
-       activebackground="violet", activeforeground="purple", width=40).pack(pady=10)
+Button(fmTemp, text="Submit", relief=SOLID, font="Corbel 12 bold", command=seeFeeServ, fg="black",
+       activebackground="grey", activeforeground="black", width=40).pack(pady=10)
 fmTemp.pack(pady=50)
 # --------------------------------------------
 # END of Above Part i.e. printing data
@@ -518,7 +525,7 @@ seePaymentH = Frame(mFrame2, bg=bcg)
 bksp1 = Button(seePaymentH, text=u"\u25C0 Back", command=localBack)
 bksp1.pack(anchor=W)
 head1 = Label(seePaymentH, text="Shyam Computer Academy", relief=SOLID, borderwidth=3,
-              font="impact 25 bold underline", fg="purple")
+              font="impact 25 bold underline", fg="black")
 head1.pack(pady=50)
 
 
@@ -544,12 +551,12 @@ def seeFeeServ1():
             btnbk = Button(pmWndw, text=u"\u25C0 Back", command=back2fmTemp)
             btnbk.pack(anchor=W)
             Label(pmWndw, text="Shyam Computer Academy", relief=SOLID, borderwidth=3,
-                  font="impact 20 bold underline", fg="purple").pack(pady=50)
+                  font="impact 20 bold underline", fg="black").pack(pady=50)
             bksp1.pack_forget(), fmTemp1.pack_forget(), head1.pack_forget()
             name4, fname4, adhrn4, addr4, mobno4, bldgrp4, dob4 = res101[0][0], res101[
                 0][1], res101[0][2], res101[0][3], res101[0][4], res101[0][5], res101[0][6]
             Label(pmWndw, text=f"Image", relief=SOLID,
-                  font="Corbel 15 bold underline", fg="purple").pack()
+                  font="Corbel 15 bold underline", fg="black").pack()
             # For Showing Image
             binary_data = base64.b64decode(res101[0][7])
             img = Image.open((io.BytesIO(binary_data)))
@@ -585,17 +592,17 @@ fmTemp1 = Frame(seePaymentH, bg=bcg)
 nm15 = StringVar()
 regno115 = StringVar()
 Label(fmTemp1, text="Name", relief=SOLID, borderwidth=3,
-      font="Corbel 15 bold underline", fg="purple").pack(anchor=W)
+      font="Corbel 15 bold underline", fg="black").pack(anchor=W)
 Entry(fmTemp1, textvariable=nm15, relief=SOLID,
       font="Corbel 20 bold", width=50).pack()
 
 Label(fmTemp1, text="Registration Number", relief=SOLID, borderwidth=3,
-      font="Corbel 15 bold underline", fg="purple").pack(anchor=W)
+      font="Corbel 15 bold underline", fg="black").pack(anchor=W)
 Entry(fmTemp1, textvariable=regno115, relief=SOLID,
       font="Corbel 20 bold", width=50).pack()
 
-Button(fmTemp1, text="Submit", relief=SOLID, font="Corbel 12 bold", command=seeFeeServ1, fg="purple",
-       activebackground="violet", activeforeground="purple", width=40).pack(pady=10)
+Button(fmTemp1, text="Submit", relief=SOLID, font="Corbel 12 bold", command=seeFeeServ1, fg="black",
+       activebackground="grey", activeforeground="black", width=40).pack(pady=10)
 fmTemp1.pack(pady=50)
 
 
@@ -626,15 +633,15 @@ def seepaymentHis():
 
 frmOption = Frame(mFrame2, bg=bcg)
 Label(frmOption, text="Shyam Computer Academy", relief=SOLID, borderwidth=3,
-      font="impact 25 bold underline", fg="purple").pack(pady=100)
-Button(frmOption, text="Add Course Structure", command=addfeeStruc, relief=SOLID, font="Corbel 12 bold", fg="purple",
-       activebackground="violet", activeforeground="purple", width=40).pack(pady=10)
-Button(frmOption, text="Store Payment", command=storepayment, relief=SOLID, font="Corbel 12 bold", fg="purple",
-       activebackground="violet", activeforeground="purple", width=40).pack(pady=10)
-Button(frmOption, text="See Payment History", command=seepaymentHis, relief=SOLID, font="Corbel 12 bold", fg="purple",
-       activebackground="violet", activeforeground="purple", width=40).pack(pady=10)
-Button(frmOption, text="Print Current Payment Details", command=seepayment, relief=SOLID, font="Corbel 12 bold", fg="purple",
-       activebackground="violet", activeforeground="purple", width=40).pack(pady=10)
+      font="impact 25 bold underline", fg="black").pack(pady=100)
+Button(frmOption, text="Add Course Structure", command=addfeeStruc, relief=SOLID, font="Corbel 12 bold", fg="black",
+       activebackground="grey", activeforeground="black", width=40).pack(pady=10)
+Button(frmOption, text="Store Payment", command=storepayment, relief=SOLID, font="Corbel 12 bold", fg="black",
+       activebackground="grey", activeforeground="black", width=40).pack(pady=10)
+Button(frmOption, text="See Payment History", command=seepaymentHis, relief=SOLID, font="Corbel 12 bold", fg="black",
+       activebackground="grey", activeforeground="black", width=40).pack(pady=10)
+Button(frmOption, text="Print Current Payment Details", command=seepayment, relief=SOLID, font="Corbel 12 bold", fg="black",
+       activebackground="grey", activeforeground="black", width=40).pack(pady=10)
 frmOption.pack()
 # =========================================================================================
 # End Of Payment Window
@@ -653,27 +660,28 @@ back_ = Button(fmTemp_, text=u"\u25C0 Back", command=lclBack)
 back_.pack(anchor=W)
 # Heading
 Label(fmTemp_, text="Shyam Computer Academy", relief=SOLID, borderwidth=3,
-      font="impact 25 bold underline", fg="purple").pack(pady=70)
+      font="impact 25 bold underline", fg="black").pack(pady=70)
 # Variables
 name_ = StringVar()
 regno_ = StringVar()
 
 Label(fmTemp_, text="Name", relief=SOLID, borderwidth=3,
-      font="Corbel 15 bold underline", fg="purple").pack(anchor=W)
+      font="Corbel 15 bold underline", fg="black").pack(anchor=W)
 Entry(fmTemp_, textvariable=name_, relief=SOLID,
       font="Corbel 20 bold", width=50).pack()
 
 Label(fmTemp_, text="Registration Number", relief=SOLID, borderwidth=3,
-      font="Corbel 15 bold underline", fg="purple").pack(anchor=W)
+      font="Corbel 15 bold underline", fg="black").pack(anchor=W)
 Entry(fmTemp_, textvariable=regno_, relief=SOLID,
       font="Corbel 20 bold", width=50).pack()
-var_=IntVar()
-Checkbutton(fmTemp_,text="Also Delete Fee Data",font="Corbel 14 bold", fg="purple",variable=var_,bg=bcg).pack(anchor=W)
+var_ = IntVar()
+Checkbutton(fmTemp_, text="Also Delete Fee Data", font="Corbel 14 bold",
+            fg="black", variable=var_, bg=bcg).pack(anchor=W)
 # Deletes Server Password
 
 
 def deleteServ():
-    if name_.get!="" and regno_.get()!="":
+    if name_.get != "" and regno_.get() != "":
         cd_con_ = sqlctr.connect(
             host=hs, user=us, password=pw, database="user_data")
         cd_ = cd_con_.cursor()
@@ -681,16 +689,18 @@ def deleteServ():
         cd_.execute(q1_)
         res = cd_.fetchall()
         if res != []:
-            if var_.get()==1:
-                ask = msg.askquestion("Delete | SCA", "Sure To Delete Data Including Fee Data Also")
+            if var_.get() == 1:
+                ask = msg.askquestion(
+                    "Delete | SCA", "Sure To Delete Data Including Fee Data Also")
             else:
                 ask = msg.askquestion("Delete | SCA", "Sure To Delete Data")
             if ask == "yes":
                 cd_.execute(
                     f"delete from data where name='{name_.get()}' && aadno={regno_.get()};")
-                if var_.get()==1:
+                if var_.get() == 1:
                     try:
-                        cd_.execute(f"delete from studfee where regno={regno_.get()};")
+                        cd_.execute(
+                            f"delete from studfee where regno={regno_.get()};")
                     except:
                         msg.showerror("Error | SCA", "No Fee Data in Database")
                     var_.set(0)
@@ -702,8 +712,10 @@ def deleteServ():
             msg.showerror("Error | SCA", "Error No Data Found")
     else:
         msg.showerror("Error | SCA", "Fields Can't Be Empty")
-Button(fmTemp_, text="Submit", relief=SOLID, font="Corbel 12 bold", command=deleteServ, fg="purple",
-       activebackground="violet", activeforeground="purple", width=40).pack(pady=10)
+
+
+Button(fmTemp_, text="Submit", relief=SOLID, font="Corbel 12 bold", command=deleteServ, fg="black",
+       activebackground="grey", activeforeground="black", width=40).pack(pady=10)
 fmTemp_.pack(pady=50)
 # ----------------------------------------------------------------------------------------------------------
 # End of Deletion Data
@@ -725,7 +737,7 @@ def tmpFrame():
         pass
 
     Label(tFrame, text="Shyam Computer Academy", relief=SOLID, borderwidth=3,
-          font="impact 25 bold underline", fg="purple").pack(pady=100)
+          font="impact 25 bold underline", fg="black").pack(pady=100)
     # Functions
 
     def storeData():
@@ -750,19 +762,22 @@ def tmpFrame():
         # msg.showinfo("Under Development | SCA","The Window Was Under Development....")
 
     def EXIT():
-        os.remove("assets/temp.txt")
+        try:
+            os.remove("assets/temp.txt")
+        except:
+            pass
         root.destroy()
     # Adding Diffrent Buttons For Diffeent Work
-    Button(tFrame, text="Store Data", relief=SOLID, font="Corbel 12 bold", fg="purple",
-           activebackground="violet", activeforeground="purple", command=storeData, width=40).pack(pady=10)
-    Button(tFrame, text="See Data", relief=SOLID, font="Corbel 12 bold", fg="purple",
-           activebackground="violet", activeforeground="purple", command=seeData, width=40).pack(pady=10)
-    Button(tFrame, text="Delete Data", relief=SOLID, font="Corbel 12 bold", fg="purple",
-           activebackground="violet", activeforeground="purple", command=deleteData, width=40).pack(pady=10)
-    Button(tFrame, text="Payment Window", relief=SOLID, font="Corbel 12 bold", fg="purple",
-           activebackground="violet", activeforeground="purple", command=paymentWindow, width=40).pack(pady=10)
-    Button(tFrame, text="EXIT", relief=SOLID, font="Corbel 12 bold", fg="purple",
-           activebackground="violet", activeforeground="purple", command=EXIT, width=40).pack(pady=10)
+    Button(tFrame, text="Store Data", relief=SOLID, font="Corbel 12 bold", fg="black",
+           activebackground="grey", activeforeground="black", command=storeData, width=40).pack(pady=10)
+    Button(tFrame, text="See Data", relief=SOLID, font="Corbel 12 bold", fg="black",
+           activebackground="grey", activeforeground="black", command=seeData, width=40).pack(pady=10)
+    Button(tFrame, text="Delete Data", relief=SOLID, font="Corbel 12 bold", fg="black",
+           activebackground="grey", activeforeground="black", command=deleteData, width=40).pack(pady=10)
+    Button(tFrame, text="Payment Window", relief=SOLID, font="Corbel 12 bold", fg="black",
+           activebackground="grey", activeforeground="black", command=paymentWindow, width=40).pack(pady=10)
+    Button(tFrame, text="EXIT", relief=SOLID, font="Corbel 12 bold", fg="black",
+           activebackground="grey", activeforeground="black", command=EXIT, width=40).pack(pady=10)
     tFrame.pack()
     # ========================================================================
 
@@ -791,25 +806,25 @@ def pw_get():
 
 frame = Frame(root, bg=bcg)
 Label(frame, text="Shyam Computer Academy", relief=SOLID, borderwidth=3,
-      font="impact 25 bold underline", fg="purple").pack(pady=100)
+      font="impact 25 bold underline", fg="black").pack(pady=100)
 host = StringVar()
 user = StringVar()
 password = StringVar()
 # Labels and Entries
 Label(frame, text="Enter Host", relief=SOLID, font="Corbel 15 bold underline",
-      fg="purple").pack(anchor=W)
+      fg="black").pack(anchor=W)
 Entry(frame, textvariable=host, relief=SOLID,
       font="Corbel 20 bold", width=50).pack()
 Label(frame, text="Enter User", relief=SOLID, font="Corbel 15 bold underline",
-      fg="purple").pack(anchor=W)
+      fg="black").pack(anchor=W)
 Entry(frame, textvariable=user, relief=SOLID,
       font="Corbel 20 bold", show="*", width=50).pack()
 Label(frame, text="Enter Server Password",
-      relief=SOLID, font="Corbel 15 bold underline", fg="purple").pack(anchor=W)
+      relief=SOLID, font="Corbel 15 bold underline", fg="black").pack(anchor=W)
 Entry(frame, textvariable=password,
       relief=SOLID, font="Corbel 20 bold", show="*", width=50).pack()
-Button(frame, text="Submit", relief=SOLID, font="Corbel 12 bold", command=pw_get, fg="purple",
-       activebackground="violet", activeforeground="purple", width=40).pack(pady=10)
+Button(frame, text="Submit", relief=SOLID, font="Corbel 12 bold", command=pw_get, fg="black",
+       activebackground="grey", activeforeground="black", width=40).pack(pady=10)
 frame.pack()
 
 
